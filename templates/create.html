@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}<title>Create Task</title>{% endblock %}
+
+{% block body %}
+    <h1>Create Task</h1>
+    <form method="post" action="{{ url_for('create') }}" class="create-task-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <label for="task_name" class="animate-charcter">Enter task:</label>
+                </div>
+            </div>
+        </div>
+        <input type="text" id="task_name" name="task_name" class="task-input" required>
+
+        <label for="task_priority">Task Priority:</label>
+        <select id="task_priority" name="task_priority" required>
+            <option value="Низкий">Низкий</option>
+            <option value="Средний">Средний</option>
+            <option value="Высокий">Высокий</option>
+        </select>
+
+        <label for="task_created_date">Task Created Date:</label>
+        <input type="datetime-local" id="task_created_date" name="task_created_date" required>
+
+        <div class="wrap">
+            <button type="submit" class="button">Create</button>
+        </div>
+    </form>
+    <a href="{{ url_for('index') }}" class="back-link">Back to tasks</a>
+{% endblock %}

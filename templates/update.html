@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}<title>Update Task</title>{% endblock %}
+
+{% block body %}
+    <h1>Update Task</h1>
+    <form method="post" action="{{ url_for('update', id=item.id) }}">
+        <label for="task_name">Task Name:</label>
+        <input type="text" id="task_name" name="task_name" value="{{ item.task_name }}" required>
+
+        <label for="task_priority">Task Priority:</label>
+        <select id="task_priority" name="task_priority" required>
+            <option value="Низкий" {% if item.task_priority == 'Низкий' %}selected{% endif %}>Низкий</option>
+            <option value="Средний" {% if item.task_priority == 'Средний' %}selected{% endif %}>Средний</option>
+            <option value="Высокий" {% if item.task_priority == 'Высокий' %}selected{% endif %}>Высокий</option>
+        </select>
+
+        <label for="task_created_date">Task Created Date:</label>
+        <input type="datetime-local" id="task_created_date" name="task_created_date" value="{{ item.task_created_date.strftime('%Y-%m-%dT%H:%M') }}" required>
+
+        <button type="submit" class="button">Update</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to Tasks</a>
+{% endblock %}
